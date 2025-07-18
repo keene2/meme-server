@@ -1,0 +1,35 @@
+{
+  "name": "rushx-server",
+  "version": "1.0.0",
+  "description": "Server for RushX, a simplified on-chain trading platform.",
+  "main": "dist/index.js",
+  "scripts": {
+    "start": "node dist/index.js",
+    "dev": "ts-node-dev --respawn --transpile-only src/index.ts",
+    "build": "tsc",
+    "check-env": "node scripts/check-env.js",
+    "setup": "node scripts/setup.js",
+    "setup:quick": "node scripts/setup.js --quick"
+  },
+  "dependencies": {
+    "@okxweb3/okx-dex-sdk": "github:okx/okx-dex-sdk",
+    "@solana/web3.js": "^1.98.2",
+    "@types/crypto-js": "^4.2.2",
+    "axios": "^1.10.0",
+    "bs58": "^6.0.0",
+    "cors": "^2.8.5",
+    "crypto-js": "^4.2.0",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "ws": "^8.16.0"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.19",
+    "@types/express": "^4.17.21",
+    "@types/node": "^20.12.7",
+    "@types/ws": "^8.5.10",
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^5.4.5"
+  },
+  "packageManager": "pnpm@9.0.0"
+}

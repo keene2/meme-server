@@ -1,0 +1,76 @@
+### 健康检查
+GET http://localhost:8082/health
+
+### 获取市场数据
+GET http://localhost:8082/api/markets
+
+### 获取报价 (需要参数)
+GET http://localhost:8082/api/quote?fromTokenAddress=So11111111111111111111111111111111111111112&toTokenAddress=EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v&amount=1000000&slippage=0.5&userWalletAddress=2u2dseY9mF5vAJVz3sHgMm2sfW2Ww9LyzEG89NNJ4EiR
+
+### 构建交易
+POST http://localhost:8082/api/build-transaction
+Content-Type: application/json
+
+{
+  "fromTokenAddress": "So11111111111111111111111111111111111111112",
+  "toTokenAddress": "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v",
+  "amount": "1000000",
+  "slippage": "0.5",
+  "userWalletAddress": "2u2dseY9mF5vAJVz3sHgMm2sfW2Ww9LyzEG89NNJ4EiR",
+  "enableMevProtection": false,
+  "priorityFee": "auto",
+  "enableTwap": false
+}
+
+### 提交交易 (需要签名后的交易)
+POST http://localhost:8082/api/submit-transaction
+Content-Type: application/json
+
+{
+  "signedTransaction": "your_signed_transaction_here",
+  "enableMevProtection": false
+}
+
+### 获取特定代币市场数据
+GET http://localhost:8082/api/markets/So11111111111111111111111111111111111111112
+
+### ==================== 新增的 OKX DEX API 测试 ====================
+
+### 获取支持的区块链
+GET http://localhost:8082/api/dex/chains
+
+### 获取代币价格
+GET http://localhost:8082/api/dex/price?chainId=501&quoteCurrency=USDC&baseCurrency=SOL
+
+### 批量获取代币价格
+GET http://localhost:8082/api/dex/prices?chainId=501&quoteCurrency=USDC&baseCurrencies=SOL,BONK,WIF
+
+### 获取 Solana 热门代币价格
+GET http://localhost:8082/api/dex/solana/popular-prices?quoteCurrency=USD
+
+### 获取代币交易记录
+GET http://localhost:8082/api/dex/trades?chainId=501&quoteCurrency=USDC&baseCurrency=SOL&limit=50
+
+### 获取K线数据
+GET http://localhost:8082/api/dex/kline?chainId=501&quoteCurrency=USDC&baseCurrency=SOL&period=1H&limit=24
+
+### 获取历史K线数据
+GET http://localhost:8082/api/dex/kline/history?chainId=501&quoteCurrency=USDC&baseCurrency=SOL&period=1H&before=1640995200000&limit=24
+
+### 获取钱包总估值
+GET http://localhost:8082/api/dex/balance/total?chainId=501&address=9WzDXwBbmkg8ZTbNMqUxvQRAyrZzDsGYdLVL9zYtAWWM&quoteCurrency=USD
+
+### 获取钱包资产明细
+GET http://localhost:8082/api/dex/balance/details?chainId=501&address=9WzDXwBbmkg8ZTbNMqUxvQRAyrZzDsGYdLVL9zYtAWWM&quoteCurrency=USD&protocolType=all&page=1&limit=20
+
+### 获取特定代币余额
+GET http://localhost:8082/api/dex/balance/token?chainId=501&address=9WzDXwBbmkg8ZTbNMqUxvQRAyrZzDsGYdLVL9zYtAWWM&tokenContractAddress=So11111111111111111111111111111111111111112&quoteCurrency=USD
+
+### 获取交易历史
+GET http://localhost:8082/api/dex/history/transactions?chainId=501&address=9WzDXwBbmkg8ZTbNMqUxvQRAyrZzDsGYdLVL9zYtAWWM&protocolType=all&page=1&limit=20
+
+### 获取综合币价
+GET http://localhost:8082/api/dex/aggregated-price?symbol=BTC
+
+### 获取 Solana 钱包完整资产信息
+GET http://localhost:8082/api/dex/solana/wallet/9WzDXwBbmkg8ZTbNMqUxvQRAyrZzDsGYdLVL9zYtAWWM?quoteCurrency=USD
